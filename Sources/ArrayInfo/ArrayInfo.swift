@@ -7,43 +7,38 @@ public struct ArrayInfo<T:AdditiveArithmetic&BinaryInteger> : Equatable {
         }
         public static var histogram:Options { Options(rawValue: 1 << 0) }
     }
-    internal (set) public var options:Options = []
-    internal (set) public var count:Int = 0
-    internal (set) public var sum:Int? = 0
-    internal (set)public var elementOverflow:Bool = false
-    internal (set) public var sumOverflow:Bool = false
-    internal (set) public var avg:Double? = 0
-    internal (set) public var avgOverflow:Bool = false
-    internal (set) public var minValue:T?
-    internal (set) public var maxValue:T?
-    internal (set) public var minDelta:Int?
-    internal (set) public var maxDelta:Int?
-    internal (set) public var avgDelta:Double?
-    internal (set) public var sumDelta:Int?
-    internal (set) public var sumDeltaOverflow:Bool = false
-    internal (set) public var deltaOverflow:Bool = false
-    internal (set) public var isAscending:Bool = false
-    internal (set) public var isStrictAscending:Bool = false
+    fileprivate (set) public var options:Options = []
+    fileprivate (set) public var count:Int = 0
+    fileprivate (set) public var sum:Int? = 0
+    fileprivate (set)public var elementOverflow:Bool = false
+    fileprivate (set) public var sumOverflow:Bool = false
+    fileprivate (set) public var avg:Double? = 0
+    fileprivate (set) public var avgOverflow:Bool = false
+    fileprivate (set) public var minValue:T?
+    fileprivate (set) public var maxValue:T?
+    fileprivate (set) public var minDelta:Int?
+    fileprivate (set) public var maxDelta:Int?
+    fileprivate (set) public var avgDelta:Double?
+    fileprivate (set) public var sumDelta:Int?
+    fileprivate (set) public var sumDeltaOverflow:Bool = false
+    fileprivate (set) public var deltaOverflow:Bool = false
+    fileprivate (set) public var isAscending:Bool = false
+    fileprivate (set) public var isStrictAscending:Bool = false
     public var hasConstantStride:Bool { count >= 2 && minDelta == maxDelta }
     public var constantStride:Int? { hasConstantStride ? minDelta : nil }
     fileprivate (set) public var histogram:[T:Int]?
 }
+public extension Sequence where Element:AdditiveArithmetic&FixedWidthInteger {
+    func info(with options:ArrayInfo<Element>.Options = []) -> ArrayInfo<Element> {
+        ArraySlice(self).info(with: options)
+    }
+}
 public extension ArraySlice where Element:AdditiveArithmetic&FixedWidthInteger {
     func info(with options:ArrayInfo<Element>.Options = []) -> ArrayInfo<Element> {
-        info(range: self.startIndex..<self.endIndex, with: options)
-    }
-    func info<R:RangeExpression>(range:R?, with options:ArrayInfo<Element>.Options) -> ArrayInfo<Element> where R.Bound == Index {
         guard self.isEmpty == false else {
             return ArrayInfo<Element>()
         }
-        let r:Range<Index>
-        if let range = range {
-            r = Range<Index>(uncheckedBounds: (lower: range.relative(to: self).lowerBound,
-                                               upper: range.relative(to: self).upperBound))
-        }
-        else {
-            r = self.startIndex..<self.endIndex
-        }
+        let r:Range<Index> = self.startIndex..<self.endIndex
         var stat = ArrayInfo<Element>()
         guard let firstValue = self.first,
               let fv = Int(exactly: firstValue) else {
@@ -138,10 +133,5 @@ public extension ArraySlice where Element:AdditiveArithmetic&FixedWidthInteger {
         }
 
         return stat
-    }
-}
-public extension Sequence where Element:AdditiveArithmetic&FixedWidthInteger {
-    func info(with options:ArrayInfo<Element>.Options = []) -> ArrayInfo<Element> {
-        ArraySlice(self).info(with: options)
     }
 }

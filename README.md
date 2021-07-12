@@ -5,7 +5,7 @@ Extends Swift `ArraySlice` and `Sequence` with
     info() -> ArrayInfo
     info(with:) -> ArrayInfo
     
-methods returning a concrete type ArrayInfo containing trivial/statistical information about the array and array's elements. Extensions are valid for element types `Element:AdditiveArithmetic&FixedWidthInteger`
+Concrete type ArrayInfo contains trivial/statistical information about the array and array's elements. Extensions are valid for element types `Element:AdditiveArithmetic&FixedWidthInteger`.
 
     import ArrayInfo
     
@@ -15,3 +15,8 @@ methods returning a concrete type ArrayInfo containing trivial/statistical infor
     print(array[3...].info().sum) // Optional(24)
     print(array.reversed().info().isAscending) // false
 
+### Performance
+All information is collected with a single pass through elements. 
+
+### Other
+`ArrayInfo` will update the overflow properties (and set the respective property to nil) when overflows occurs. 

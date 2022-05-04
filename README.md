@@ -10,7 +10,8 @@ Concrete type ArrayInfo contains trivial/statistical information about the array
     
     let array = [1,2,4,8,16]
     var info = array.info(.histogram)
-    print(info) // ArrayInfo<Int>(count: 5, sum: Optional(31), elementOverflow: false, sumOverflow: false, avg: Optional(6.2), avgOverflow: false, minValue: Optional(1), maxValue: Optional(16), minValueIndex: Optional(0), maxValueIndex: Optional(4), minDelta: Optional(1), maxDelta: Optional(8), avgDelta: Optional(3.75), sumDelta: Optional(15), sumDeltaOverflow: false, minMaxDeltaOverflow: false, isAscending: true, isStrictAscending: true, histogram: Optional([8: 1, 2: 1, 1: 1, 16: 1, 4: 1]))
+    print(info) // ArrayInfo<Int>(count: 5, sum: Optional(31), sumOverflow: false, elementOverflow: false, allElementsEqual: false, avg: Optional(6.2), avgOverflow: false, minValue: Optional(1), maxValue: Optional(16), minValueIndex: Optional(0), maxValueIndex: Optional(4), minDelta: Optional(1), maxDelta: Optional(8), avgDelta: Optional(3.75), sumDelta: Optional(15), sumDeltaOverflow: false, minMaxDeltaOverflow: false, isAscending: true, isStrictlyAscending: true, isDescending: false, isStrictlyDescending: false, median: Optional(4.0), histogram: Optional([4: 1, 2: 1, 8: 1, 1: 1, 16: 1]), mode: nil)
+    
     print(array[3...].info().sum) // Optional(24)
     print(array.reversed().info().isAscending) // false
 

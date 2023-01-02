@@ -31,3 +31,14 @@ jobs:
       run: swift build -v
     - name: Run Linux tests
       run: swift test -v -c release
+
+  build-Windows:
+
+    runs-on: windows
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Windows
+      run: swift build -v
+    - name: Run Windows tests
+      run: swift test -v -c release

@@ -1,4 +1,4 @@
-[![Tests](https://github.com/gallinapassus/ArrayInfo/actions/workflows/swift.yml/badge.svg)](https://github.com/gallinapassus/ArrayInfo/actions/workflows/table-ci.yml)
+[![Tests](https://github.com/gallinapassus/ArrayInfo/actions/workflows/swift.yml/badge.svg)](https://github.com/gallinapassus/ArrayInfo/actions/workflows/swift.yml)
 ![Version](https://img.shields.io/static/v1?label=Version&message=0.0.1&color=green)
 
 # ArrayInfo

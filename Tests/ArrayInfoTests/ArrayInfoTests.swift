@@ -927,7 +927,7 @@ final class StatsArrayTests: XCTestCase {
         }
         #else
         do {
-            let a:[Float16] = [-127, 0, 127]
+            let a:[Float32] = [-127, 0, 127]
             let s = a.info()
             XCTAssertEqual(s.hasConstantExactDelta, true)
             XCTAssertEqual(s.constantExactDelta, 127)

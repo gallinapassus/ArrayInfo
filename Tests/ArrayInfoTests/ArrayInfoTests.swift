@@ -730,6 +730,7 @@ final class StatsArrayTests: XCTestCase {
             let s = a.info()
             XCTAssertNil(s.median)
         }
+        #if os(Linux)
         do {
             let a:[Float16] = [0, 1.1, 1.5]
             let s = a.info(.exact)
@@ -745,6 +746,23 @@ final class StatsArrayTests: XCTestCase {
             let s = a.info(.exact)
             XCTAssertEqual(s.median, 0.4998779296875)
         }
+        #else
+        do {
+            let a:[Float32] = [0, 1.1, 1.5]
+            let s = a.info(.exact)
+            XCTAssertEqual(s.median, 1.100000023841858)
+        }
+        do {
+            let a:[Float32] = [32768, 38016.5, 40000]
+            let s = a.info(.exact)
+            XCTAssertEqual(s.median, 38016.5)
+        }
+        do {
+            let a:[Float32] = [0, 1/3, 2/3, 1.5]
+            let s = a.info(.exact)
+            XCTAssertEqual(s.median, 0.5000000149011612)
+        }
+        #endif
         do {
             let a:[Double] = [0, 1/3, 2/3, 2]
             let s = a.info(.exact)

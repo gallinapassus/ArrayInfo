@@ -10,13 +10,24 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build-macOS:
 
-    runs-on: macos-latest, ubuntu-latest
+    runs-on: macos-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build
+    - name: Build macOS
       run: swift build -v
-    - name: Run tests
-      run: swift test -v
+    - name: Run macOS tests
+      run: swift test -v -c release
+  
+  build-Linux:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build Linux
+      run: swift build -v
+    - name: Run Linux tests
+      run: swift test -v -c release

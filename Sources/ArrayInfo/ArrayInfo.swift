@@ -496,7 +496,7 @@ public extension Sequence where Element:BinaryInteger&Codable {
     }
 }
 public extension ArraySlice where Element:BinaryInteger&Codable {
-    /// Calculate trivial / statistical info about the sequence and it's values
+    /// Calculate trivial / statistical info about ArraySlice and it's values
     ///
     /// See ``ArrayInfo`` for more details of calculated data.
     /// - Returns: ArrayInfo
@@ -569,7 +569,7 @@ public extension Sequence where Element:BinaryFloatingPoint&Codable {
     }
 }
 public extension ArraySlice where ArraySlice.Element:BinaryFloatingPoint&Codable {
-    /// Calculate trivial / statistical info about the sequence and it's values
+    /// Calculate trivial / statistical info about the ArraySlice and it's values
     ///
     /// See ``ArrayInfo`` for more details of calculated data.
     /// - Returns: ArrayInfo

@@ -7,7 +7,7 @@ Extends Swift `ArraySlice` and `Sequence` with
 for `Element` types conforming to `BinaryInteger&Codable` and `BinaryFloatingPoint&Codable`.
 
     
-Concrete type ArrayInfo contains trivial/statistical information about the array/sequence and it's elements.
+Concrete type ArrayInfo contains trivial/statistical information about array/sequence and it's elements.
 
     import ArrayInfo
     

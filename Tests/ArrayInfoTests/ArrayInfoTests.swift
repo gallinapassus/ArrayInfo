@@ -115,6 +115,7 @@ final class StatsArrayTests: XCTestCase {
             print(str)
             let decoder = JSONDecoder()
             let decoded = try decoder.decode(ArrayInfo<Float>.self, from: data)
+            /*
             print(type(of: decoded))
             print(decoded)
             var tokens:[String] = []
@@ -124,7 +125,8 @@ final class StatsArrayTests: XCTestCase {
                 tokens.append("lhs.\(label) == rhs.\(label)")
             }
             print("return", tokens.joined(separator: " &&\n"))
-            //XCTAssertEqual(s, decoded)
+             */
+            XCTAssertEqual(s, decoded)
         } catch let e {
             XCTFail(e.localizedDescription)
         }

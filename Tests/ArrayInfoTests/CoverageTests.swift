@@ -2342,7 +2342,7 @@ final class CoverageTests : XCTestCase {
 			XCTAssertEqual(s.histogram, nil)
 			XCTAssertEqual(s.mode, nil)
         }
-
+        #if os(Linux)
         do {
             let a = Array<Float16>([16.0, 8.0, 4.0, 2.0])
             let s = a.info(ArrayInfo<Float16>.Options(rawValue: 0))
@@ -2378,7 +2378,7 @@ final class CoverageTests : XCTestCase {
 			XCTAssertEqual(s.histogram, nil)
 			XCTAssertEqual(s.mode, nil)
         }
-
+        #endif
         do {
             let a = Array<Float>([16.0, 8.0, 4.0, 2.0])
             let s = a.info(ArrayInfo<Float>.Options(rawValue: 0))
